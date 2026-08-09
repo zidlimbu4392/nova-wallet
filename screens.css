@@ -1,0 +1,508 @@
+/* ==========================================================================
+   Nova Wallet — Screen styles
+   ========================================================================== */
+
+/* ===================== DASHBOARD ===================== */
+.dash-hero {
+  margin: 6px 0 0;
+  padding: 22px 20px 20px;
+  background: #fff;
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease-spring);
+}
+.dash-hero:active { transform: scale(.985); }
+.dash-hero::after {
+  content: "";
+  position: absolute;
+  top: -60px; right: -40px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(10,132,255,.08), transparent 70%);
+  pointer-events: none;
+}
+.dash-greet { font-size: 14px; color: var(--text-secondary); font-weight: 500; }
+.dash-balance {
+  font-size: 40px; font-weight: 800; letter-spacing: -.03em;
+  margin-top: 6px; line-height: 1.05;
+  font-variant-numeric: tabular-nums;
+}
+.dash-balance .cents { font-size: 28px; color: var(--text-secondary); font-weight: 700; }
+.dash-delta { margin-top: 8px; display: flex; align-items: center; gap: 8px; }
+.dash-spark { margin-top: 14px; height: 56px; width: 100%; display: block; }
+.dash-actions { display: flex; gap: 10px; margin: 16px 0 0; }
+
+.token-row .token-ico { position: relative; }
+.token-row .row-main .sym { font-size: 16px; font-weight: 650; }
+.token-row .row-main .sub { font-size: 13px; color: var(--text-secondary); margin-top: 1px; }
+.token-row .row-trail .amt { font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.token-row .row-trail .fiat { font-size: 13px; color: var(--text-secondary); margin-top: 2px; font-variant-numeric: tabular-nums; }
+
+/* ===================== SWAP ===================== */
+.swap-wrap { padding: 28px 20px 20px; display: flex; flex-direction: column; min-height: 100%; }
+.swap-wrap > * + * { margin-top: 28px; }
+
+/* Блок с инфой и кнопкой внизу */
+.swap-bottom-info { margin-top: auto; }
+.swap-bottom-info .swap-meta { margin-bottom: 16px; }
+
+/* Swap — чистый, просторный */
+.swap-section { padding: 0; }
+.ss-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.ss-label { font-size: 15px; font-weight: 600; color: var(--text-secondary); }
+.ss-bal { font-size: 13px; color: var(--text-secondary); }
+.ss-bal b { color: var(--accent); font-weight: 650; cursor: pointer; margin-left: 4px; }
+
+.ss-main { display: flex; align-items: center; gap: 16px; }
+.ss-token {
+  display: flex; align-items: center; gap: 10px;
+  background: none; border: none; cursor: pointer;
+  font-weight: 700; color: var(--text);
+  flex-shrink: 0;
+  padding: 6px 4px;
+  transition: opacity var(--dur-fast);
+}
+.ss-token:active { opacity: .6; }
+.ss-token .token-ico { width: 36px; height: 36px; font-size: 14px; }
+.ss-token-name { font-size: 24px; letter-spacing: -.02em; }
+.ss-amt {
+  font-size: 36px; font-weight: 700; text-align: right;
+  flex: 1; min-width: 0; background: transparent;
+  font-variant-numeric: tabular-nums; letter-spacing: -.03em;
+}
+.ss-amt::placeholder { color: var(--text-tertiary); }
+.ss-fiat { font-size: 13px; color: var(--text-secondary); margin-top: 8px; text-align: right; }
+
+/* Линия-разделитель с переключателем */
+.swap-divider-line {
+  display: flex; align-items: center; gap: 16px;
+  margin: 0;
+}
+.sdl-line { flex: 1; height: 1px; background: var(--hairline); }
+.swap-divider-line .swap-switch {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: var(--bg-tertiary);
+  display: grid; place-items: center;
+  color: var(--accent);
+  border: none;
+  flex-shrink: 0;
+  transition: transform var(--dur) var(--ease-spring);
+}
+.swap-divider-line .swap-switch:active { transform: rotate(180deg) scale(.92); }
+.swap-divider-line .swap-switch svg { width: 20px !important; height: 20px !important; }
+
+/* Кнопка Continue без свечения */
+.swap-continue { box-shadow: none !important; }
+
+/* Перекрывающиеся иконки в истории обменов */
+.rs-icons { display: flex; flex-shrink: 0; align-items: center; }
+.rs-icons .token-ico:first-child { margin-right: -10px; z-index: 1; }
+.rs-icons .token-ico { width: 28px; height: 28px; font-size: 11px; border: 2px solid var(--bg-elevated); }
+.swap-token-pick {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--bg-tertiary);
+  border-radius: var(--r-pill);
+  padding: 7px 12px 7px 7px;
+  font-weight: 650; font-size: 15px;
+}
+.swap-token-pick .token-ico { width: 28px; height: 28px; font-size: 11px; }
+.swap-token-pick svg { color: var(--text-secondary); width: 14px; height: 14px; flex-shrink: 0; }
+.swap-token-pick:active { transform: scale(.96); }
+.swap-row-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.swap-row-label { font-size: 13px; color: var(--text-secondary); font-weight: 600; }
+.swap-row-amt { font-size: 24px; font-weight: 700; letter-spacing: -.01em; font-variant-numeric: tabular-nums; width: 100%; background: transparent; }
+.swap-fiat { font-size: 13px; color: var(--text-secondary); margin-top: 2px; }
+/* Старый swap-switch — не нужен, новый в .swap-divider-line */
+.swap-meta {
+  margin-top: 20px;
+  display: flex; flex-direction: column; gap: 8px;
+  font-size: 13.5px;
+}
+.swap-meta .m-row { display: flex; justify-content: space-between; }
+.swap-meta .m-row .m-val { color: var(--text); font-weight: 500; font-variant-numeric: tabular-nums; }
+
+/* Быстрые маршруты (как в референсе) */
+.swap-quick { display: flex; gap: 10px; margin-top: 4px; }
+.quick-route {
+  flex: 1; background: var(--bg-elevated); border-radius: var(--r-lg);
+  padding: 12px;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  cursor: pointer; transition: transform var(--dur-fast);
+}
+.quick-route:active { transform: scale(.97); }
+.qr-pair { display: flex; align-items: center; gap: 4px; }
+.qr-i {
+  width: 22px; height: 22px; border-radius: 50%;
+  display: grid; place-items: center;
+  color: #fff; font-size: 12px; font-weight: 700;
+  box-shadow: 0 1px 3px rgba(0,0,0,.1);
+}
+.qr-arrow { color: var(--text-secondary); font-size: 14px; font-weight: 700; }
+.qr-label { font-size: 12px; font-weight: 600; color: var(--text); }
+.swap-meta .m-row .m-val { color: var(--text); font-weight: 500; font-variant-numeric: tabular-nums; }
+.swap-slip { display: inline-flex; gap: 6px; }
+.slip-pill {
+  padding: 5px 11px; border-radius: var(--r-pill);
+  background: var(--bg-tertiary); font-size: 12.5px; font-weight: 600;
+  color: var(--text-secondary); transition: all var(--dur-fast);
+}
+.slip-pill.active { background: var(--accent); color: #fff; }
+
+.token-picker { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+.token-picker .tp-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px; border-radius: var(--r-md);
+  background: var(--bg-tertiary);
+}
+.token-picker .tp-row:active { background: var(--bg-secondary); }
+.token-picker .tp-row .tp-amt { margin-left: auto; text-align: right; font-size: 13px; color: var(--text-secondary); }
+
+/* ===================== NFT ===================== */
+.nft-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 6px 0 0;
+}
+.nft-card {
+  background: var(--bg-elevated);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--dur-fast) var(--ease-spring);
+}
+.nft-card:active { transform: scale(.97); }
+.nft-img {
+  aspect-ratio: 1;
+  width: 100%;
+  display: grid; place-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.nft-img .nft-art { position: absolute; inset: 0; }
+.nft-body { padding: 10px 12px 12px; }
+.nft-body .nm { font-size: 14px; font-weight: 650; }
+.nft-body .col { font-size: 11.5px; color: var(--text-secondary); margin-top: 2px; }
+.nft-body .floor { font-size: 12px; color: var(--text); margin-top: 6px; font-weight: 600; display: flex; align-items: center; gap: 4px; }
+
+/* NFT detail compact */
+.nft-detail-compact { text-align: center; padding: 4px 0 0; }
+.ndc-img {
+  width: 180px; height: 180px;
+  margin: 0 auto 14px;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+.ndc-img .nft-art { width: 100%; height: 100%; }
+.nft-art-img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+.nft-art-wrap { position: relative; width: 100%; height: 100%; }
+.nft-art-wrap .nft-art { position: absolute; inset: 0; width: 100%; height: 100%; }
+.nft-art-wrap .nft-art-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ndc-name { font-size: 18px; font-weight: 700; margin-bottom: 2px; }
+.ndc-collection { font-size: 14px; color: var(--text-secondary); margin-bottom: 16px; }
+.ndc-info {
+  display: flex; justify-content: space-around;
+  padding: 12px 0;
+  background: var(--bg-tertiary);
+  border-radius: var(--r-md);
+}
+.ndc-info-item { display: flex; flex-direction: column; gap: 4px; align-items: center; }
+.ndc-info-item .muted { font-size: 11px; }
+.ndc-info-item span:last-child { font-size: 14px; font-weight: 600; }
+
+/* ===================== STAKING ===================== */
+.earn-hero {
+  margin: 6px 0 0;
+  padding: 22px 20px;
+  background: linear-gradient(150deg, #34C759 0%, #30B0F0 120%);
+  border-radius: var(--r-xl);
+  box-shadow: 0 8px 28px rgba(52,199,89,.22);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.earn-hero::after {
+  content: ""; position: absolute; top: -50px; right: -30px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(255,255,255,.25), transparent 70%);
+}
+.earn-hero .eh-label { font-size: 14px; opacity: .9; font-weight: 500; }
+.earn-hero .eh-val { font-size: 36px; font-weight: 800; letter-spacing: -.025em; margin-top: 4px; font-variant-numeric: tabular-nums; }
+.earn-hero .eh-row { display: flex; gap: 24px; margin-top: 14px; }
+.earn-hero .eh-row .k { font-size: 12px; opacity: .85; }
+.earn-hero .eh-row .v { font-size: 16px; font-weight: 700; margin-top: 2px; }
+
+.pool-row .pool-ico { width: 46px; height: 46px; font-size: 20px; }
+.pool-row .row-main .sym { font-size: 15.5px; font-weight: 650; }
+.pool-row .row-main .sub { font-size: 12.5px; color: var(--text-secondary); margin-top: 1px; }
+.pool-row .apy { font-size: 15px; font-weight: 700; color: var(--success); font-variant-numeric: tabular-nums; }
+.pool-row .apy-l { font-size: 11px; color: var(--text-secondary); text-align: right; }
+
+/* ===================== ACTIVITY ===================== */
+.act-filter {
+  display: flex; gap: 8px;
+  padding: 4px 4px 6px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.act-filter::-webkit-scrollbar { display: none; }
+.filter-pill {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border-radius: var(--r-pill);
+  background: var(--bg-elevated);
+  font-size: 13.5px; font-weight: 600;
+  color: var(--text-secondary);
+  transition: all var(--dur-fast);
+}
+.filter-pill.active { background: var(--accent); color: #fff; }
+
+.tx-date { font-size: 12px; font-weight: 650; color: var(--text-secondary); padding: 14px 6px 6px; text-transform: uppercase; letter-spacing: .04em; }
+.tx-row {
+  padding: 12px 16px;
+  position: relative;
+}
+.tx-row .tx-ico {
+  width: 40px; height: 40px; border-radius: var(--r-pill);
+  display: grid; place-items: center; flex-shrink: 0;
+}
+.tx-row .tx-ico svg { width: 20px !important; height: 20px !important; }
+.tx-ico.send { background: var(--danger-soft); color: var(--danger); }
+.tx-ico.recv { background: var(--success-soft); color: var(--success); }
+.tx-ico.swap { background: rgba(175,82,222,.14); color: #AF52DE; }
+.tx-ico.stake { background: var(--warning-soft); color: var(--warning); }
+.tx-row .row-main { min-width: 0; overflow: hidden; }
+.tx-row .row-main .tt { font-size: 15px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tx-row .row-main .ts { font-size: 12.5px; color: var(--text-secondary); margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tx-row .row-trail { flex-shrink: 0; margin-left: 8px; }
+.tx-row .row-trail .amt { font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tx-row .row-trail .st { margin-top: 4px; display: flex; justify-content: flex-end; }
+
+/* Детали транзакции (sheet) */
+.tx-detail .d-row { display: flex; justify-content: space-between; padding: 11px 0; border-top: 1px solid var(--hairline); font-size: 15px; }
+.tx-detail .d-row:first-of-type { border-top: none; }
+.tx-detail .d-row .k { color: var(--text-secondary); }
+.tx-detail .d-row .v { font-weight: 600; font-variant-numeric: tabular-nums; }
+.tx-hash { font-family: var(--font-mono); font-size: 13px; word-break: break-all; }
+
+/* ===================== SEND ===================== */
+.send-token-bar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px 14px; background: var(--bg-tertiary);
+  border-radius: var(--r-md); cursor: pointer;
+}
+.send-token-bar:active { background: var(--bg-secondary); }
+.send-token-bar .token-ico { width: 32px; height: 32px; font-size: 13px; flex-shrink: 0; }
+.send-token-bar .stb-name { font-weight: 700; font-size: 17px; }
+.send-token-bar .stb-bal { margin-left: auto; font-size: 13px; color: var(--text-secondary); font-weight: 600; }
+
+.send-amount-box {
+  text-align: center; padding: 24px 16px 16px;
+  background: var(--bg-tertiary); border-radius: var(--r-xl);
+  position: relative;
+}
+.sa-input {
+  font-size: 42px; font-weight: 800; letter-spacing: -.03em;
+  text-align: center; width: 100%; background: transparent;
+  font-variant-numeric: tabular-nums;
+}
+.sa-input::placeholder { color: var(--text-tertiary); }
+.sa-max {
+  position: absolute; top: 14px; right: 14px;
+  font-size: 12px; font-weight: 700; color: var(--accent);
+  background: var(--accent-soft); padding: 5px 12px; border-radius: var(--r-pill);
+}
+.sa-fiat { font-size: 14px; color: var(--text-secondary); margin-top: 6px; }
+
+.sa-label { font-size: 13px; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px; }
+.send-field {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--bg-tertiary); border-radius: var(--r-md);
+  padding: 12px 14px;
+}
+.send-field input { flex: 1; font-size: 15px; background: transparent; }
+.send-paste {
+  font-size: 13px; font-weight: 600; color: var(--accent);
+  background: var(--accent-soft); padding: 6px 12px; border-radius: var(--r-sm);
+  flex-shrink: 0;
+}
+
+.send-fee-row {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 13px; padding: 0 4px;
+}
+
+/* Send review */
+.send-review-hero { text-align: center; padding: 20px 0; }
+.send-review-hero .token-ico.lg { width: 56px; height: 56px; font-size: 20px; margin: 0 auto 12px; display: flex; }
+.srh-amt { font-size: 32px; font-weight: 800; letter-spacing: -.02em; }
+.srh-amt .muted { font-size: 22px; font-weight: 700; }
+.srh-fiat { font-size: 15px; color: var(--text-secondary); margin-top: 2px; }
+
+.send-review-info { background: var(--bg-elevated); border-radius: var(--r-lg); padding: 4px 16px; box-shadow: var(--shadow-sm); }
+.ri-row { display: flex; justify-content: space-between; padding: 12px 0; font-size: 15px; border-bottom: 1px solid var(--hairline); }
+.ri-row:last-child { border-bottom: none; }
+.ri-row span:first-child { color: var(--text-secondary); }
+.ri-row span:last-child { font-weight: 600; font-variant-numeric: tabular-nums; }
+
+/* ===================== RECEIVE ===================== */
+.recv-net { display: flex; gap: 8px; }
+.recv-net .n-pill {
+  flex: 1; padding: 10px; text-align: center;
+  border-radius: var(--r-md); background: var(--bg-tertiary);
+  font-size: 13px; font-weight: 600; color: var(--text-secondary);
+}
+.recv-net .n-pill.active { background: var(--accent); color: #fff; }
+
+.qr-big {
+  background: #fff; border-radius: var(--r-xl);
+  padding: 20px; display: inline-block;
+  box-shadow: var(--shadow-sm);
+}
+.qr-big canvas { width: 240px; height: 240px; display: block; image-rendering: pixelated; }
+
+/* ===================== LOADING / SUCCESS внутри шторки ===================== */
+.sheet-state { text-align: center; padding: 30px 16px 6px; }
+.sheet-state .ss-title { font-size: 20px; font-weight: 700; margin-top: 16px; }
+.sheet-state .ss-sub { font-size: 14px; color: var(--text-secondary); margin-top: 6px; line-height: 1.45; }
+.sheet-state .ss-amount { font-size: 30px; font-weight: 800; margin-top: 14px; letter-spacing: -.02em; }
+.sheet-state .ss-amount .cur { font-size: 18px; color: var(--text-secondary); }
+
+/* Сегмент-кнопки (для выбора) */
+.segment {
+  display: flex; flex-wrap: nowrap; background: var(--bg-tertiary); border-radius: var(--r-sm);
+  padding: 2px; gap: 2px; width: 100%;
+}
+.segment .seg {
+  flex: 1; text-align: center; padding: 7px;
+  font-size: 13.5px; font-weight: 600; color: var(--text-secondary);
+  border-radius: 8px; transition: all var(--dur-fast);
+}
+.segment .seg.active { background: #fff; color: var(--text); box-shadow: var(--shadow-xs); }
+
+/* Подсветкаaccent полосы для секций заголовков экранов */
+.screen-head .head-avatar {
+  width: 34px; height: 34px; border-radius: var(--r-pill);
+  background: linear-gradient(135deg, #0A84FF, #AF52DE);
+  display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 14px;
+  box-shadow: var(--shadow-xs);
+}
+
+/* ===================== TOKEN DETAIL ===================== */
+.td-wrap { display: flex; flex-direction: column; gap: 20px; }
+.td-header { text-align: center; padding: 12px 0 4px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.td-header .token-ico.lg { width: 64px; height: 64px; font-size: 22px; }
+.td-name { font-size: 15px; color: var(--text-secondary); font-weight: 500; }
+.td-balance { font-size: 36px; font-weight: 800; letter-spacing: -.02em; }
+.td-fiat { font-size: 16px; color: var(--text-secondary); }
+.td-change { font-size: 13px; font-weight: 650; }
+.td-actions { display: flex; gap: 12px; }
+.td-actions .btn { flex: 1; }
+
+html, body, .app {
+  background: #f2f2f6 !important;
+}
+
+/* ===================== ZEN DASHBOARD ===================== */
+.zen-screen {
+  background: #000000;
+  min-height: 100vh;
+}
+.zen-screen-light {
+  background: #ffffff;
+  min-height: 100vh;
+  padding-bottom: 120px !important;
+}
+.zen-top {
+  background: transparent;
+  padding: 16px;
+}
+.zen-head {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.zen-badge {
+  background: #775bf2; color: #fff; font-size: 14px; font-weight: 650;
+  padding: 6px 16px 6px 6px; border-radius: var(--r-pill); display: flex; align-items: center; gap: 8px;
+}
+.zen-balance {
+  margin-top: 24px; font-size: 48px; font-weight: 800; letter-spacing: -.03em; line-height: 1.1; color: #000;
+  display: flex; align-items: center;
+}
+.zen-cur { color: #000; margin-right: 2px; }
+.zen-cents { color: #000; }
+
+.zen-cards {
+  display: flex; gap: 12px; margin-top: 24px;
+  overflow-x: auto; padding-bottom: 8px;
+  scrollbar-width: none;
+}
+.zen-cards::-webkit-scrollbar { display: none; }
+.z-card {
+  background: #f7f7f9; border-radius: var(--r-xl);
+  padding: 16px; min-width: 120px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.z-card-label { font-size: 14px; font-weight: 600; color: #000; display: flex; align-items: center; gap: 6px; }
+.z-card-val { font-size: 20px; font-weight: 700; color: #000; letter-spacing: -.02em; margin-top: auto; }
+.z-ico { width: 18px; height: 18px; background: #e8e8fa; border-radius: 4px; display: inline-block; }
+
+.zen-middle {
+  display: flex; gap: 8px; justify-content: space-around;
+  padding: 12px 16px;
+}
+.zen-act {
+  background: #f2f2f6; color: var(--text-main); border: none; box-shadow: none;
+  border-radius: var(--r-pill); padding: 12px 18px; font-size: 14px; font-weight: 650;
+  display: flex; align-items: center; gap: 8px; cursor: pointer; transition: transform var(--dur-fast);
+}
+.zen-act:active { transform: scale(.95); }
+.zen-act svg { width: 18px; height: 18px; fill: currentColor; }
+.zen-bottom {
+  background: #ffffff;
+  border-radius: 36px 36px 0 0;
+  padding: 24px 16px 120px; 
+  min-height: 60vh;
+}
+.zen-bottom-head {
+  display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 18px; color: #000;
+}
+.zen-bottom-head a {
+  font-size: 14px; color: #8e8e93; font-weight: 600; text-decoration: none;
+}
+.zen-filter {
+  display: flex; gap: 8px; margin: 16px 0;
+}
+.zf-pill {
+  padding: 6px 14px; font-size: 13.5px; font-weight: 650; color: #8e8e93;
+  border-radius: var(--r-pill); background: #f2f2f7; cursor: pointer; color: #8e8e93;
+}
+.zf-pill.active { background: #775bf2; color: #fff; }
+.zen-row .sym { color: #000; }
+
+/* Staking pool row reverted to default */
+
+.zen-nft-card {
+  background: #f2f2f7 !important;
+  box-shadow: none !important;
+}
+
+.zen-bottom .list {
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+}
+.zen-bottom .list-row + .list-row::before {
+  background: rgba(0,0,0,0.08); /* slight dark line */
+  left: 50px !important;
+}
+
+/* Fix divider line for stocks All Assets list */
+.stocks-assets-list .list-row + .list-row::before,
+#market-list-container .list-row + .list-row::before {
+  left: 64px !important;
+}

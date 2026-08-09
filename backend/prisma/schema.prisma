@@ -1,0 +1,100 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(cuid())
+  telegramId    String   @unique
+  username      String?
+  walletAddress String?  // Generated Ethereum-like address
+  isAdmin       Boolean  @default(false)
+  hasCard       Boolean  @default(false)
+  cardBg        String?
+  cardColor     String?
+  cardName      String?
+  createdAt     DateTime @default(now())
+
+  balances     WalletBalance[]
+  transactions Transaction[]
+  nfts         UserNFT[]
+}
+
+model Token {
+  id       String   @id // 'eth', 'btc', 'usdt'
+  symbol   String   @unique
+  name     String
+  priceUsd Float    @default(0)
+  change24 Float    @default(0)
+  color    String?
+  glyph    String?
+  chain    String?
+  icon     String?
+
+  balances     WalletBalance[]
+}
+
+model WalletBalance {
+  id      String @id @default(cuid())
+  userId  String
+  tokenId String
+  balance Float  @default(0)
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  token Token @relation(fields: [tokenId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, tokenId])
+}
+
+model Transaction {
+  id        String   @id @default(cuid())
+  userId    String
+  type      String   // "send", "recv", "swap", "stake", "deposit"
+  status    String   @default("pending") // "success", "pending", "failed"
+  amount    Float
+  tokenId   String?
+  fiatValue Float?
+  hash      String?  @unique
+  toAddress String?
+  fromAddr  String?
+  note      String?
+  fee       Float?
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model UserNFT {
+  id         String @id @default(cuid())
+  userId     String
+  name       String
+  collection String
+  floorPrice Float
+  image      String
+  artType    String?  // "rings", "tri", "circ", "sun", "wave"
+  artFrom    String?  // gradient start color
+  artTo      String?  // gradient end color
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model StakingPool {
+  id      String @id
+  asset   String // token symbol e.g., "ETH"
+  name    String
+  apy     Float
+  tvl     String
+  staked  Float  @default(0)
+  rewards Float  @default(0)
+  color   String?
+  glyph   String?
+}
